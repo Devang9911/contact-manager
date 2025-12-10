@@ -8,7 +8,7 @@ import { PopupProvider } from './popup/PopupContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='/ContactManager'>
       <AuthProvider>
         <PopupProvider>
           <App />
