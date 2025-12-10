@@ -5,13 +5,16 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { PopupProvider } from './popup/PopupContext.jsx'
+import { ContactProvider } from './context/ContactContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename='/contact-manager'>
+    <BrowserRouter>
       <AuthProvider>
         <PopupProvider>
-          <App />
+          <ContactProvider>
+            <App />
+          </ContactProvider>
         </PopupProvider>
       </AuthProvider>
     </BrowserRouter>

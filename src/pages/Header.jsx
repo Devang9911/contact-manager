@@ -5,6 +5,7 @@ import { usePopup } from '../hooks/usePopup';
 
 function Header() {
     const [open, setOpen] = useState(false)
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const { logoutUser } = useAuth()
     const { showPopup } = usePopup()
@@ -22,16 +23,20 @@ function Header() {
     }, [open])
 
     const handleLogout = () => {
-        logoutUser()
-        setOpen(false)
-        showPopup(
-            "Logged Out",
-            "You have been logged out successfully",
-            "success",
-            () => {
-                navigate("/")
-            }
-        )
+        setLoading(true)
+        try{
+            logoutUser()
+            setOpen(false)
+            showPopup(
+                "Logged Out",
+                "You have been logged out successfully",
+                "success",
+                () => navigate("/")
+                
+            )
+        }finally{
+            setLoading(false)
+        }
     }
 
     return (
@@ -93,7 +98,7 @@ function Header() {
                                         className="cursor-pointer hover:text-blue-400 border-b border-blue-700/99"
                                         onClick={handleLogout}
                                     >
-                                        Logout
+                                        {loading ? "Logout..." : "Logout"}
                                     </li>
                                 ) : (
                                     <Link to={'/signup'}>
@@ -134,7 +139,7 @@ function Header() {
                 </Link>
                 {currentUserId ? (
                     <li className="group relative text-lg font-medium text-gray-200 cursor-pointer" onClick={handleLogout}>
-                        Logout
+                        {loading ? "Logout..." : "Logout"}
                         <span className="absolute left-0 -bottom-1 border-b-2 border-blue-500 w-0 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
                     </li>
                 ) : (
