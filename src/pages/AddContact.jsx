@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
 import { useContact } from "../hooks/useContact"
 import { usePopup } from "../hooks/usePopup"
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 function AddContact() {
 

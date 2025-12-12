@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router"
+import { Navigate, useNavigate } from "react-router-dom"
 import { usePopup } from "../hooks/usePopup"
 import { useEffect } from "react"
 
